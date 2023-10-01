@@ -34,16 +34,9 @@ const userPasswordChangeValidationRules =  [
   body('new_password').notEmpty().trim().isLength({ min: 1 }).exists()
 ]
 
-const movieValidationRules = [
-  body('film_name').notEmpty().trim().isLength({ min: 1 }).exists(),
-  body('film_director').notEmpty().trim().isLength({ min: 1 }).exists(),
-  body('film_genre').notEmpty().trim().isLength({ min: 1 }).exists(),
-  body('film_rating').notEmpty().trim().isLength({ min: 1 }).exists(),
-  body('film_userId').notEmpty().trim().isLength({ min: 1 }).exists(),
 
 
 
-]
 
 
 //! add user validation
@@ -52,6 +45,5 @@ module.exports = {
   userRegisterValidationRules,
   userLoginValidationRules,
   userPasswordChangeValidationRules,
-  movieValidationRules
   
 }

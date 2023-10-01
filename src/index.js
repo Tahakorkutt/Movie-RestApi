@@ -5,7 +5,6 @@ const env = require('dotenv').config()
 require('./mongo-connection')
 
 
-
 const Router = require('./router')
 
 const {userRegisterValidationRules, userLoginValidationRules, handleInputErrors} = require('./modules/middleware')
@@ -33,6 +32,5 @@ app.post('/user-login', userLoginValidationRules, handleInputErrors, loginUser)
 // app.delete('/user-delete/:id', handleInputErrors, deleteUser)
 
 app.listen(4000, () => {
-  console.log('Server is listening on port 4000');
+  console.log('Server is listening on port 3000');
 });
-

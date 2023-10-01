@@ -6,9 +6,6 @@ const Enum = require('../../config/Enum')
 const CustomError = require('../../lib/Error')
 const Response = require('../../lib/Response')
 
-
-// user register
-
 const registerUser = async (req, res, next) => {
   const { email, phone, password, user_name, first_name, last_name, birth_day, address, age, gender, user_type } = req.body
 
@@ -34,7 +31,7 @@ const registerUser = async (req, res, next) => {
     res.status(errorResponse.code).json(Response.errorResponse(err));
   }
 }
-// user login
+
 const loginUser = async (req, res) => {
   try {
     const user = await UserService.findByEmail(req.body.email)
@@ -74,8 +71,6 @@ const logoutUser = async (req, res, next) => { // sor
     res.status(errorResponse.code).json(Response.errorResponse(err));
   }
 }
-
-//user delete
 const deleteUser = async (req, res, next) => {
   const _id = req.params.id
   try {
@@ -89,7 +84,7 @@ const deleteUser = async (req, res, next) => {
     res.status(errorResponse.code).json(Response.errorResponse(err));
   }
 }
-// updatepassword
+
 const updatePasswordUser = async (req, res, next) => {
   const { id } = req.params
   const { old_password, new_password } = req.body
@@ -110,7 +105,6 @@ const updatePasswordUser = async (req, res, next) => {
     res.status(errorResponse.code).json(Response.errorResponse(err));
   }
 }
-//user detail
 const userDetail = async (req, res, next) => {
   const _id = req.query.user_id
   console.log(_id)
@@ -133,8 +127,7 @@ const userDetail = async (req, res, next) => {
     res.status(errorResponse.code).json(Response.errorResponse(err));
   }
 
-} 
-//updateuser
+}
 const updateUserDetail = async (req, res, next) => {
   const obj = req.body
 
@@ -168,11 +161,6 @@ const updateUserDetail = async (req, res, next) => {
 }
 
 
-
-
-
-
-
 module.exports = {
   registerUser,
   loginUser,
@@ -180,6 +168,6 @@ module.exports = {
   deleteUser,
   userDetail,
   updateUserDetail,
-  updatePasswordUser
- 
+  updatePasswordUser,
+
 }

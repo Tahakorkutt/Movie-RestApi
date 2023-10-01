@@ -1,39 +1,40 @@
 const router = require('express').Router()
 const {
+
   handleInputErrors,
   userRegisterValidationRules,
   userLoginValidationRules,
   userPasswordChangeValidationRules,
-  movieValidationRules
-  
+ 
+
  
 } = require('./modules/middleware');
 
-const {updatePasswordUser, userDetail, updateUserDetail,registerUser, loginUser, logoutUser, deleteUser} = require('./handlers/user/user_handler');
-const {createMovie} = require('./handlers/movie_handler'); 
+const {updatePasswordUser, userDetail, updateUserDetail ,registerUser, loginUser, logoutUser, deleteUser} = require('./handlers/user/user_handler');
 
-//register
-router.post('/user-register', userRegisterValidationRules, handleInputErrors, registerUser);
+const {addMovieToFavorites,createMovies,deleteMovie,updateMovie,filterSearchMovies}=require('./handlers/movie/movie_service_handlers.js');
 
-//login
-router.post('/user-login', userLoginValidationRules, handleInputErrors, loginUser);
 
-//logout
-router.post('/user-logout/:id', handleInputErrors, logoutUser);
 
-//user delete
-router.delete('/user-delete/:id', handleInputErrors, deleteUser);
+router.post('/movies',  handleInputErrors,createMovies)
+router.delete('/movies/:id', handleInputErrors, deleteMovie)
+router.patch('/movies/:id', handleInputErrors, updateMovie)
+router.get('/movies-filter',handleInputErrors, filterSearchMovies);
+router.post('/add_to_favorites/:userId/:movieId', handleInputErrors,addMovieToFavorites)
 
-//user update password
-router.post('/user-update-password/:id', userPasswordChangeValidationRules, handleInputErrors, updatePasswordUser);
+
+router.post('/user-register', userRegisterValidationRules, handleInputErrors, registerUser)
+router.post('/user-login', userLoginValidationRules, handleInputErrors, loginUser)
+router.post('/user-logout/:id', handleInputErrors, logoutUser)
+router.delete('/user-delete/:id', handleInputErrors, deleteUser)
+router.post('/user-update-password/:id', userPasswordChangeValidationRules, handleInputErrors, updatePasswordUser)
+router.post('/user-logout/:id', handleInputErrors, logoutUser)
+router.delete('/user-delete/:id', handleInputErrors, deleteUser)
 
 //User Detail
+
 router.post('/user_detail' , handleInputErrors, userDetail)
 router.post('/user_detail/:userId' , handleInputErrors, updateUserDetail)
-
-//create fılm
-
-router.post('/create-movie',movieValidationRules,handleInputErrors,createMovie)
 
 
 

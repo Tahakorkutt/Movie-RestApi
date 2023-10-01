@@ -62,6 +62,7 @@ class BaseService {
   async findByProperties(properties) {
     return await this.model.find(properties)
   }
+  
 
 }
 

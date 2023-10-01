@@ -20,6 +20,10 @@ class UserService extends BaseService {
   async updatePasswordUser(id, password) {
     return await this.update(id, { password })
   }
+  async findById(id) {
+    return this.model.findById(id)
+  }
+  
 }
 
 module.exports = new UserService(UserModel)
